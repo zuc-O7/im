@@ -1,63 +1,9 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "portfolio-theme";
   const header = document.querySelector(".site-header");
   const navToggle = document.getElementById("nav-toggle");
-  const siteNav = document.getElementById("site-nav");
-  const themeToggle = document.getElementById("theme-toggle");
   const yearEl = document.getElementById("year");
-
-  function getStoredTheme() {
-    try {
-      return localStorage.getItem(STORAGE_KEY);
-    } catch {
-      return null;
-    }
-  }
-
-  function setStoredTheme(value) {
-    try {
-      localStorage.setItem(STORAGE_KEY, value);
-    } catch {
-      /* ignore */
-    }
-  }
-
-  function getPreferredTheme() {
-    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      return "light";
-    }
-    return "dark";
-  }
-
-  function applyTheme(theme) {
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.setAttribute("data-theme", "light");
-    } else {
-      root.removeAttribute("data-theme");
-    }
-    if (themeToggle) {
-      themeToggle.setAttribute(
-        "aria-label",
-        theme === "light" ? "切換為深色主題" : "切換為淺色主題"
-      );
-    }
-  }
-
-  function initTheme() {
-    const stored = getStoredTheme();
-    const theme = stored === "light" || stored === "dark" ? stored : getPreferredTheme();
-    applyTheme(theme);
-  }
-
-  function toggleTheme() {
-    const isLight = document.documentElement.getAttribute("data-theme") === "light";
-    const next = isLight ? "dark" : "light";
-    applyTheme(next);
-    setStoredTheme(next);
-  }
 
   function closeNav() {
     if (!header || !navToggle) return;
@@ -150,10 +96,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    initTheme();
-    if (themeToggle) {
-      themeToggle.addEventListener("click", toggleTheme);
-    }
     initNavToggle();
     initSmoothScroll();
     initReveal();
