@@ -11,18 +11,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+      defer
+    ></script>
     <script src="script.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳至主要內容</a>
 
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+    <div class="ambient-grid" aria-hidden="true"></div>
+
     <header class="site-header">
       <div class="header-inner">
-        <a class="logo" href="#hero" aria-label="回到頁首">Bowen</a>
+        <a class="logo" href="#hero" aria-label="回到頁首">
+          <span class="logo-mark" aria-hidden="true"></span>
+          Bowen
+        </a>
 
         <button
           type="button"
@@ -56,26 +66,36 @@
     <main id="main">
       <section id="hero" class="hero section">
         <div class="container hero-inner reveal">
+          <p class="hero-badge">
+            <span class="hero-badge__dot" aria-hidden="true"></span>
+            Front-end · UI/UX · WebGL
+          </p>
           <h1 class="hero-title">
-            設計應該關於連結，<br />
-            而不是複雜。
+            <span class="hero-title__line">把想法變成</span>
+            <span class="hero-title__line hero-title__gradient"
+              >可觸及的 3D 體驗</span
+            >
           </h1>
           <div class="hero-copy">
             <p>
-              使用者應該一眼就能理解介面在做什麼。開發者應該能維護、擴充而不感到混亂。
-              產品應該在細節裡傳達信任，而不是用特效掩蓋問題。
-            </p>
-            <p>
               我專注語意化 HTML、可維護 CSS 與穩健 JavaScript，
-              在細節裡打磨質感，讓介面既好看也好用。
+              在沉浸感與可用性之間找到平衡，讓介面既好看也好用。
             </p>
           </div>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#projects">探索作品</a>
+            <a class="btn btn--ghost" href="#about">了解更多</a>
+          </div>
         </div>
+        <a class="scroll-hint" href="#story" aria-label="向下捲動">
+          <span aria-hidden="true">Scroll</span>
+        </a>
       </section>
 
       <section id="story" class="section section-story">
         <div class="container">
           <header class="story-intro reveal">
+            <p class="eyebrow">01 — Origin</p>
             <h2>我開發，因為親身經歷過</h2>
             <p>
               我遇過版面在手机上崩壞、互動沒有回饋、程式越改越難維護的專案。
@@ -84,12 +104,14 @@
           </header>
 
           <div class="story-grid">
-            <article class="story-card reveal">
+            <article class="glass-card story-card reveal">
               <div
                 class="story-card__media story-card__media--1"
                 role="img"
                 aria-label="程式碼與設計並行的佔位圖"
-              ></div>
+              >
+                <span class="media-glow" aria-hidden="true"></span>
+              </div>
               <div class="story-card__body">
                 <h3>我問了一個簡單的問題</h3>
                 <p>
@@ -99,12 +121,14 @@
               </div>
             </article>
 
-            <article class="story-card reveal">
+            <article class="glass-card story-card reveal">
               <div
                 class="story-card__media story-card__media--2"
                 role="img"
                 aria-label="元件化開發的佔位圖"
-              ></div>
+              >
+                <span class="media-glow" aria-hidden="true"></span>
+              </div>
               <div class="story-card__body">
                 <h3>前端就是我的答案</h3>
                 <p>
@@ -114,12 +138,14 @@
               </div>
             </article>
 
-            <article class="story-card reveal">
+            <article class="glass-card story-card reveal">
               <div
                 class="story-card__media story-card__media--3"
                 role="img"
                 aria-label="團隊協作的佔位圖"
-              ></div>
+              >
+                <span class="media-glow" aria-hidden="true"></span>
+              </div>
               <div class="story-card__body">
                 <h3>也看過時間被浪費在救火</h3>
                 <p>
@@ -133,11 +159,11 @@
       </section>
 
       <section id="about" class="section section-identity">
-        <div class="container identity-block reveal">
-          <p class="eyebrow">who i am</p>
+        <div class="container identity-block glass-panel reveal">
+          <p class="eyebrow">02 — Who I am</p>
           <h2 class="identity-statement">
             我是前端開發者與 UI 設計愛好者，專注在把想法變成可觸及、可維護的數位體驗。
-            我相信當介面足夠清晰，產品就能真正與使用者產生連結。
+            <span class="text-dim">我相信當介面足夠清晰，產品就能真正與使用者產生連結。</span>
           </h2>
         </div>
       </section>
@@ -145,6 +171,7 @@
       <section id="projects" class="section section-projects">
         <div class="container">
           <header class="section-header reveal">
+            <p class="eyebrow">03 — Work</p>
             <h2>精選作品</h2>
             <p class="section-lead">
               三個代表性專案；將下方標題、描述與圖片替換為你的真實作品。
@@ -152,7 +179,7 @@
           </header>
 
           <div class="projects-grid">
-            <article class="project-card reveal">
+            <article class="glass-card project-card reveal">
               <div
                 class="project-card__media project-card__media--1"
                 role="img"
@@ -175,7 +202,7 @@
               </div>
             </article>
 
-            <article class="project-card reveal">
+            <article class="glass-card project-card reveal">
               <div
                 class="project-card__media project-card__media--2"
                 role="img"
@@ -198,7 +225,7 @@
               </div>
             </article>
 
-            <article class="project-card reveal">
+            <article class="glass-card project-card reveal">
               <div
                 class="project-card__media project-card__media--3"
                 role="img"
@@ -227,15 +254,14 @@
       <section id="skills" class="section section-stack">
         <div class="container">
           <header class="section-header section-header--center reveal">
+            <p class="eyebrow">Stack</p>
             <h2>技術棧</h2>
-            <p class="section-lead">
-              我日常使用的工具與技術；可依你的履歷調整項目。
-            </p>
           </header>
           <ul class="stack-grid reveal">
             <li class="stack-item">HTML</li>
             <li class="stack-item">CSS</li>
             <li class="stack-item">JavaScript</li>
+            <li class="stack-item">Three.js</li>
             <li class="stack-item">Python</li>
             <li class="stack-item">Git</li>
             <li class="stack-item">Figma</li>
@@ -246,13 +272,11 @@
       <section id="experience" class="section section-milestones">
         <div class="container">
           <header class="section-header reveal">
+            <p class="eyebrow">04 — Timeline</p>
             <h2>重要經歷</h2>
-            <p class="section-lead">
-              比賽、檢定與活動紀錄；請替換為你的真實項目與日期。
-            </p>
           </header>
           <ul class="milestones-list">
-            <li class="milestone-item reveal">
+            <li class="glass-panel milestone-item reveal">
               <time class="milestone-date" datetime="2024-05">2024 · 五月</time>
               <div class="milestone-body">
                 <h3>全國網頁設計競賽 · 佳作</h3>
@@ -262,7 +286,7 @@
                 </p>
               </div>
             </li>
-            <li class="milestone-item reveal">
+            <li class="glass-panel milestone-item reveal">
               <time class="milestone-date" datetime="2023-11">2023 · 十一月</time>
               <div class="milestone-body">
                 <h3>Python 能力檢定 · 通過</h3>
@@ -272,7 +296,7 @@
                 </p>
               </div>
             </li>
-            <li class="milestone-item reveal">
+            <li class="glass-panel milestone-item reveal">
               <time class="milestone-date" datetime="2023-03">2023 · 三月</time>
               <div class="milestone-body">
                 <h3>校園黑客松 · 參與</h3>
@@ -289,24 +313,28 @@
       <section id="ethos" class="section section-ethos">
         <div class="container">
           <header class="ethos-header reveal">
-            <p class="eyebrow">my ethos</p>
-            <h2>我遵循幾項信念：</h2>
+            <p class="eyebrow">05 — Ethos</p>
+            <h2>我遵循幾項信念</h2>
           </header>
 
           <div class="ethos-grid">
-            <article class="ethos-card reveal">
+            <article class="glass-card ethos-card reveal">
+              <span class="ethos-index" aria-hidden="true">01</span>
               <h3>介面應該簡單</h3>
               <p>複雜會拖慢使用者的節奏。</p>
             </article>
-            <article class="ethos-card reveal">
+            <article class="glass-card ethos-card reveal">
+              <span class="ethos-index" aria-hidden="true">02</span>
               <h3>互動應該自然</h3>
               <p>它應該引導，而不是分散注意力。</p>
             </article>
-            <article class="ethos-card reveal">
+            <article class="glass-card ethos-card reveal">
+              <span class="ethos-index" aria-hidden="true">03</span>
               <h3>可及性不可妥協</h3>
               <p>每個人都能使用，才是好的產品。</p>
             </article>
-            <article class="ethos-card reveal">
+            <article class="glass-card ethos-card reveal">
+              <span class="ethos-index" aria-hidden="true">04</span>
               <h3>持續迭代是常態</h3>
               <p>產品在演進，開發方式也應該與時俱進。</p>
             </article>
@@ -315,10 +343,10 @@
       </section>
 
       <section id="contact" class="section section-closing">
-        <div class="container closing-block reveal">
+        <div class="container closing-block glass-panel reveal">
+          <p class="eyebrow">Contact</p>
           <p class="closing-lead">
             我正在打造能讓想法落地的數位體驗——清晰、可維護、以使用者為中心。
-            無論是作品集、品牌官網或互動原型，都歡迎與我聯繫。
           </p>
           <a class="btn btn--primary btn--lg" href="mailto:hello@example.com">
             寄信給我 <span aria-hidden="true">→</span>
