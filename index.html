@@ -51,7 +51,7 @@
             <li><a href="#story">故事</a></li>
             <li><a href="#about">關於</a></li>
             <li><a href="#projects">作品</a></li>
-            <li><a href="#ethos">理念</a></li>
+            <li><a href="#ethos">理念114514</a></li>
           </ul>
         </nav>
 
@@ -338,6 +338,55 @@
               <h3>持續迭代是常態</h3>
               <p>產品在演進，開發方式也應該與時俱進。</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="random-dog" class="section section-dog">
+        <div class="container">
+          <div class="dog-widget glass-panel reveal">
+            <header class="dog-widget__header">
+              <p class="eyebrow">Bonus</p>
+              <h2>隨機狗狗</h2>
+              <p class="section-lead">
+                點擊按鈕，從 Dog CEO API 取得一張可愛的狗狗照片。
+              </p>
+            </header>
+            <div class="dog-widget__body">
+              <div
+                class="dog-widget__frame"
+                id="dog-frame"
+                aria-live="polite"
+                aria-busy="false"
+              >
+                <div class="dog-widget__placeholder" id="dog-placeholder">
+                  <p>準備好就點擊下方按鈕吧</p>
+                </div>
+                <div
+                  class="dog-widget__loading is-hidden"
+                  id="dog-loading"
+                  aria-hidden="true"
+                >
+                  <span class="dog-widget__spinner" aria-hidden="true"></span>
+                  <span>載入中…</span>
+                </div>
+                <img
+                  class="dog-widget__image is-hidden"
+                  id="dog-image"
+                  alt=""
+                  width="640"
+                  height="480"
+                />
+                <p
+                  class="dog-widget__error is-hidden"
+                  id="dog-error"
+                  role="alert"
+                ></p>
+              </div>
+              <button type="button" class="btn btn--primary" id="dog-btn">
+                隨機狗狗
+              </button>
+            </div>
           </div>
         </div>
       </section>

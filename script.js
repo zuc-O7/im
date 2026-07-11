@@ -98,6 +98,80 @@
     }
   }
 
+  function initRandomDog() {
+    const btn = document.getElementById("dog-btn");
+    const frame = document.getElementById("dog-frame");
+    const placeholder = document.getElementById("dog-placeholder");
+    const loading = document.getElementById("dog-loading");
+    const image = document.getElementById("dog-image");
+    const errorEl = document.getElementById("dog-error");
+
+    if (!btn || !frame || !placeholder || !loading || !image || !errorEl) {
+      return;
+    }
+
+    const API_URL = "https://dog.ceo/api/breeds/image/random";
+
+    function setBusy(isBusy) {
+      frame.setAttribute("aria-busy", isBusy ? "true" : "false");
+      btn.disabled = isBusy;
+      loading.classList.toggle("is-hidden", !isBusy);
+      loading.setAttribute("aria-hidden", isBusy ? "false" : "true");
+    }
+
+    function showError(message) {
+      errorEl.textContent = message;
+      errorEl.classList.remove("is-hidden");
+      placeholder.classList.add("is-hidden");
+      image.classList.add("is-hidden");
+    }
+
+    function hideError() {
+      errorEl.textContent = "";
+      errorEl.classList.add("is-hidden");
+    }
+
+    async function fetchRandomDog() {
+      hideError();
+      setBusy(true);
+      image.classList.add("is-hidden");
+
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error("無法取得狗狗圖片，請稍後再試。");
+        }
+
+        const data = await response.json();
+        const url = data && data.message;
+
+        if (!url || data.status !== "success") {
+          throw new Error("API 回傳格式異常，請稍後再試。");
+        }
+
+        await new Promise(function (resolve, reject) {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = function () {
+            reject(new Error("圖片載入失敗，請再試一次。"));
+          };
+          img.src = url;
+        });
+
+        placeholder.classList.add("is-hidden");
+        image.src = url;
+        image.alt = "隨機狗狗照片";
+        image.classList.remove("is-hidden");
+      } catch (err) {
+        showError(err.message || "發生未知錯誤，請稍後再試。");
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    btn.addEventListener("click", fetchRandomDog);
+  }
+
   function initWebGL() {
     if (!canvas || typeof THREE === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -248,6 +322,7 @@
     initSmoothScroll();
     initReveal();
     initYear();
+    initRandomDog();
     initWebGL();
   });
 })();
